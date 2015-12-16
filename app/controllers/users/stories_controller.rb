@@ -1,7 +1,6 @@
 class Users::StoriesController < ApplicationController
   def index
-    user = User.find(params[:user_id])
-    @stories = user.stories
+    @stories = current_user.stories
     render "stories/index"
   end
 

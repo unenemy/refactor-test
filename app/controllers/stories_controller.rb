@@ -11,6 +11,7 @@ class StoriesController < ApplicationController
 
   def edit
    @story = Story.find(params[:id])
+    render "stories/new", {:story => @story}
   end
 
   def translate
@@ -18,9 +19,8 @@ class StoriesController < ApplicationController
     if params[:translate_to] == 'original'
       render json: { title: story.title, content: story.content }
     else
-      title = JSON.parse(TranslateService.translate_text(story.title,params[:translate_to]).body)['text'].join
-      content = JSON.parse(TranslateService.translate_text(story.content,params[:translate_to]).body)['text'].join
-      render json: { title: title, content: content }
+      translation = TranslateService.translate_text(story,params[:translate_to])
+      render json: { title: translation[0], content: translation[1] }
     end
   end
 

@@ -2,6 +2,7 @@ class Users::StoriesController < ApplicationController
   def index
     user = User.find(params[:user_id])
     @stories = user.stories
+    render "stories/index"
   end
 
   def create

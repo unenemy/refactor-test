@@ -26,11 +26,11 @@
           = select_tag :lang, options_for_select(['original', 'ru', 'uk', 'fr', 'de']), class: 'form-control translate', data: { path: translate_story_path(story) }
         .col-xs-2.pull-right
           Rate:
-          / TODO implement rating system. Save on change and replace average rating with new value
           = form_for [story, Rating.new] do |f|
             = f.hidden_field :rate, value: 0, class: 'story-rating', 'data-filled' => "fa fa-star fa-2x", 'data-empty' => "fa fa-star-o fa-2x"
             = f.hidden_field :story_id, value: story.id
             = f.submit 'Review', :class => 'btn'
+
 :coffee
   $('.story-rating').rating
     filled: 'fa fa-star fa-lg'

@@ -1,0 +1,18 @@
+== Task description
+
+Your main task is to refactor the code as much as you can.
+
+Setup project:
+
+- run bundle
+- run rake db:create && rake db:migrate && rake db:seed
+- see email/password in seeds.rb
+
+Task:
+
+1. Refactor the code as much as you can. If you're limited in time, just write comments about how you would refactor.
+2. Add bootstrap styles for story creation form.
+3. Add edit functionality for stories.
+4. Bonus: Add rating functionality (javascript plugin already included and used). Implement back-end, so 1 user can leave only 1 rating for any story. Display average rating in story header. Update average after user leaves/changes his rating for story.
+
+Please, fork this repo and create pull request when you're ready to show your results.

@@ -2,17 +2,17 @@
   .panel.panel-success
     .panel-heading
       = link_to category_stories_path(story.category_id) do
-        #{ Category.find(story.category_id).title }:
+        #{ story.category.title }:
       %span.story-title
         = story.title
       by
-      %a{ href: user_stories_path(story.user_id) }= User.find(story.user_id).email
+      %a{ href: user_stories_path(story.user_id) }= story.user.email
       / TODO implement average story rating display
-      5
+      = story.rating
       %i.fa.fa-star
       .pull-right
         - if current_user.id == story.user_id
-          %a.btn.btn-sm.btn-warning
+          = link_to [:edit, story], class: 'btn btn-sm btn-warning' do
             %i.fa.fa-edit
           = link_to story_path(story), method: :delete, class: 'btn btn-sm btn-danger' do
             %i.fa.fa-remove
@@ -27,22 +27,7 @@
         .col-xs-2.pull-right
           Rate:
           / TODO implement rating system. Save on change and replace average rating with new value
-          %input.story-rating{ type: 'hidden' }
-
-:coffee
-  $('.story-rating').rating
-    filled: 'fa fa-star fa-lg'
-    empty: 'fa fa-star-o fa-lg'
-    start: 0
-    stop: 5
-
-  $('.translate').change (e) ->
-    select = $(@)
-    $.ajax
-      url: select.data('path')
-      method: 'POST'
-      data:
-        translate_to: select.val()
-      success: (data) ->
-        select.closest('.panel').find('.story-title').html(data.title)
-        select.closest('.panel').find('.story-content').html(data.content)
+          = form_for [story, Rating.new] do |f|
+            = f.hidden_field :rate, value: 0, class: 'story-rating', 'data-filled' => "fa fa-star fa-2x", 'data-empty' => "fa fa-star-o fa-2x"
+            = f.hidden_field :story_id, value: story.id
+            = f.submit 'Review', :class => 'btn'

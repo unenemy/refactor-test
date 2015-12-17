@@ -1,6 +1,12 @@
-/ TODO prettify with bootstrap
-= form_tag '/stories', method: 'post' do
-  = text_field_tag :title, nil, placeholder: 'Title'
-  = text_area_tag :content, nil,  placeholder: 'Content'
-  = select_tag :category, options_for_select(['Pets', 'Sport'])
-  = submit_tag 'Create!'
+= form_for [current_user, @story] do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  .form-group
+    %label Title
+    = f.text_field :title, placeholder: 'Title',class: 'form-control', id: 'inputEmail'
+  .form-group
+    %label Content
+    = f.text_area :content, placeholder: 'Content',class: 'form-control', id: 'textarea'
+  .form-group
+    %label Category
+    = f.select :category_id, options_for_select(Category.all.pluck(:title, :id)), {}, class: 'form-control'
+  = f.submit 'Create!', :class => 'btn btn-primary'

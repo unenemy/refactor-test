@@ -15,4 +15,4 @@ Task:
 3. Add edit functionality for stories.
 4. Bonus: Add rating functionality (javascript plugin already included and used). Implement back-end, so 1 user can leave only 1 rating for any story. Display average rating in story header. Update average after user leaves/changes his rating for story.
 
-Please, fork this repo and create pull request when you're ready to show your results.
+Please, do not fork this repo. Clone it, create your own repo, push your changes and give me a link to your repo.

@@ -1,6 +1,4 @@
-- (params[:id].present?)? path = Story.find(params[:id]): path = Story.new
-
-= form_for [current_user, path] do |f|
+= form_for [current_user, @story] do |f|
   = f.hidden_field :user_id, value: current_user.id
   .form-group
     %label Title

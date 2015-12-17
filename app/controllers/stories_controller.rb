@@ -9,8 +9,12 @@ class StoriesController < ApplicationController
     redirect_to :back
   end
 
+  def new
+    @story = Story.new
+  end
+
   def edit
-   @story = Story.find(params[:id])
+    @story = Story.find(params[:id])
     render "stories/new", {:story => @story}
   end
 

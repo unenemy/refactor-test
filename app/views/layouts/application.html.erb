@@ -28,8 +28,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stories by category <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="<%= category_stories_path(Category.find_by(title: 'Pets').id) %>">Pets</a></li>
-                  <li><a href="<%= category_stories_path(Category.find_by(title: 'Sport').id) %>">Sport</a></li>
+                  <li><%= link_to "Pets", category_stories_path(Category.find_by(title: 'Pets').id) %></li>
+                  <li><%= link_to "Sport", category_stories_path(Category.find_by(title: 'Sport').id) %></li>
                 </ul>
               </li>
               <li><p class='navbar-btn'>

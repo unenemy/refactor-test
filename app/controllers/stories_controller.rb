@@ -24,7 +24,8 @@ class StoriesController < ApplicationController
       render json: { title: story.title, content: story.content }
     else
       translation = TranslateService.translate_text(story,params[:translate_to])
-      render json: { title: translation[0], content: translation[1] }
+      title, content = translation
+      render json: { title: title, content: content }
     end
   end
 

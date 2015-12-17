@@ -1,3 +1,9 @@
+#= require jquery
+#= require jquery_ujs
+#= require turbolinks
+#= require bootstrap
+#= require_tree .
+
 $(document).ready ->
   $('.story-rating').rating
     filled: 'fa fa-star fa-lg'

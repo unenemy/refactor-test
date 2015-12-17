@@ -23,8 +23,7 @@ class StoriesController < ApplicationController
     if params[:translate_to] == 'original'
       render json: { title: story.title, content: story.content }
     else
-      translation = TranslateService.translate_text(story,params[:translate_to])
-      title, content = translation
+      title, content = TranslateService.new(story, params[:translate_to]).translate_text()
       render json: { title: title, content: content }
     end
   end

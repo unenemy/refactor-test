@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require translation
 #= require turbolinks
 #= require bootstrap
 #= require_tree .
@@ -10,14 +11,3 @@ $(document).ready ->
     empty: 'fa fa-star-o fa-lg'
     start: 0
     stop: 5
-
-  $('.translate').change (e) ->
-    select = $(@)
-    $.ajax
-      url: select.data('path')
-      method: 'POST'
-      data:
-        translate_to: select.val()
-      success: (data) ->
-        select.closest('.panel').find('.story-title').html(data.title)
-        select.closest('.panel').find('.story-content').html(data.content)

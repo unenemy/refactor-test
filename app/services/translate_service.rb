@@ -5,16 +5,21 @@ class TranslateService
   end
 
   def translate_text()
-    translation = []
-    translation << parse_answer(return_responce(@story.title, @lang))
-    translation << parse_answer(return_responce(@story.content, @lang))
+    translation_content_and_title = []
+    translation_content_and_title << parse_response_with_translate(get_response_with_translate(@story.title, @lang))
+    translation_content_and_title << parse_response_with_translate(get_response_with_translate(@story.content, @lang))
   end
 
-  def return_responce(content, translate_to)
-    HTTParty.get(URI.escape("#{Rails.application.secrets.site_url}key=#{Rails.application.secrets.yandex_key}&text=#{content}&lang=#{translate_to}"))
+  private
+  def create_url_for_translate(content, translate_to)
+    URI.escape("#{Rails.application.secrets.site_url}key=#{Rails.application.secrets.yandex_key}&text=#{content}&lang=#{translate_to}")
   end
 
-  def parse_answer(response)
+  def get_response_with_translate(content, translate_to)
+    HTTParty.get(create_url_for_translate(content, translate_to))
+  end
+
+  def parse_response_with_translate(response)
     JSON.parse(response.body)['text'].join
   end
 

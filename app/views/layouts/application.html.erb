@@ -9,7 +9,7 @@
 <body>
   <div class='container'>
     <% if current_user.present? %>
-        <%= render "layouts/header_nav_bar" %>
+        <%= render "shared/header_nav_bar" %>
     <% end %>
     <%= yield %>
   </div>
